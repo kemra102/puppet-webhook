@@ -4,9 +4,13 @@ class webhook (
 
   if ! defined(Package[$ruby_dev]) {
     package { $ruby_dev:
-      ensure   => 'installed',
+      ensure  => 'installed',
+      require => Package[$gcc_cpp],
     }
   }
 
-}
+  package { $gcc_cpp:
+    ensure => 'installed',
+  }
 
+}
