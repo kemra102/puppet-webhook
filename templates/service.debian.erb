@@ -1,6 +1,6 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          webhook
+# Provides:          webhook-<%= @name %>
 # Required-Start:    $local_fs $network $named $time $syslog
 # Required-Stop:     $local_fs $network $named $time $syslog
 # Default-Start:     2 3 4 5
@@ -8,20 +8,20 @@
 # Description:       This will start an Sinatra webhook via thin
 ### END INIT INFO
 
-WEBHOOK_HOME=<%= @webhook_home %>
-WEBHOOK_PORT=<%= @webhook_port %>
-WEBHOOK_LOG="/var/log/webhook_thin.log"
-WEBHOOK_PID="/var/run/webhook_thin.pid"
+WEBHOOK_HOME=/var/www/<%= @name %>
+WEBHOOK_PORT=<%= @hook_port %>
+WEBHOOK_LOG="/var/log/webhooks.log"
+WEBHOOK_PID="/var/run/webhook-<%= @name %>_thin.pid"
 RUBY_SMALL=$(facter rubyversion | cut -c1-3)
-GEM_HOME="<%= @webhook_home %>/vendor/bundle/ruby/${RUBY_SMALL}/gems"
-GEM_PATH="<%= @webhook_home %>/vendor/bundle/ruby/${RUBY_SMALL}"
+GEM_HOME="/var/www/<%= @name %>/vendor/bundle/ruby/${RUBY_SMALL}/gems"
+GEM_PATH="/var/www/<%= @name %>/vendor/bundle/ruby/${RUBY_SMALL}"
 PATH="${PATH}:${GEM_PATH}/bin"
 
 SCRIPT="thin start --environment production --port ${WEBHOOK_PORT} -P ${WEBHOOK_PID}  -l ${WEBHOOK_LOG} -c ${WEBHOOK_HOME} -d -q"
-RUNAS=<%= @webhook_user %>
+RUNAS=root
 
-PIDFILE=/var/run/webhook.pid
-LOGFILE=/var/log/webhook.log
+PIDFILE=/var/run/webhook-<%= @name %>.pid
+LOGFILE=/var/log/webhooks.log
 
 start() {
   if [ -f /var/run/$PIDNAME ] && kill -0 $(cat /var/run/$PIDNAME); then

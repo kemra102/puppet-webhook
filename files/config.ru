@@ -2,7 +2,7 @@ require './webhook'
 
 #set :environment, :production
 
-log = File.new("log/sinatra.log", "a")
+log = File.new("/var/log/webhooks.log", "a")
 log.sync = true
 $stdout.reopen(log)
 $stderr.reopen(log)

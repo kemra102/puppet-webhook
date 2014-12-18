@@ -12,11 +12,6 @@
 #
 class webhook::params {
 
-  $homedir  = '/opt/webhook'
-  $port     = '81'
-  $owner    = 'root'
-  $group    = 'root'
-
   # OS specific stuff
   if $::osfamily == 'RedHat' {
     $ruby_dev = 'ruby-devel'

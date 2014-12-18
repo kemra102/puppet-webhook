@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Daemon Name: webhook
+# Daemon Name: webhook-<%= @name %>
 #  
 # chkconfig: - 58 74
 # description: This will start an Sinatra webhook via thin
@@ -10,15 +10,15 @@
 source /etc/init.d/functions
 
 # Set some variables
-WEBHOOK_HOME=<%= @webhook_home %>
-WEBHOOK_PORT=<%= @webhook_port %>
-WEBHOOK_LOG="/var/log/webhook.log"
-WEBHOOK_PID="/var/run/webhook_thin.pid"
-INIT_PID="/var/run/webhook.pid"
-LOCKFILE="/var/lock/subsys/webhook"
+WEBHOOK_HOME=/var/www/<%= @name %>
+WEBHOOK_PORT=<%= @hook_port %>
+WEBHOOK_LOG="/var/log/webhooks.log"
+WEBHOOK_PID="/var/run/webhook-<%= @name %>_thin.pid"
+INIT_PID="/var/run/webhook-<%= @name %>.pid"
+LOCKFILE="/var/lock/subsys/webhook-<%= @name %>"
 RUBY_SMALL=$(facter rubyversion | cut -c1-3)
-GEM_HOME="<%= @webhook_home %>/vendor/bundle/ruby/${RUBY_SMALL}/gems"
-GEM_PATH="<%= @webhook_home %>/vendor/bundle/ruby/${RUBY_SMALL}"
+GEM_HOME="/var/www/<%= @name %>/vendor/bundle/ruby/${RUBY_SMALL}/gems"
+GEM_PATH="/var/www/<%= @name %>/vendor/bundle/ruby/${RUBY_SMALL}"
 PATH="${PATH}:${GEM_PATH}/bin"
 
 # These are our own functions for this script.
@@ -85,7 +85,7 @@ case "$1" in
         start
         ;;
     status)
-        status webhook
+        status webhook-<%= @name %>
         ;;
     *)
 
