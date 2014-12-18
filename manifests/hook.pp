@@ -45,7 +45,7 @@ define webhook::hook
     require    => [
       File["/var/www/${name}/config.ru"],
       File["/var/www/${name}/Gemfile"],
-      Package[$ruby_dev],
+      Package["${::webhook::ruby_dev}"],
     ],
   }
 
