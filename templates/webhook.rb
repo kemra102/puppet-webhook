@@ -15,6 +15,6 @@ end
 
 # Define what command we're going to run.
 def customCmd(<% if @cmd_param %><%= @cmd_param %><% end %>)
-  customCmd = "<%= @cmd %>"
+  customCmd = "<%= @hook_cmd %>"
   `#{customCmd}`
 end
