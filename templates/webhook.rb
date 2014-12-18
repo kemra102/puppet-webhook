@@ -9,7 +9,7 @@ post '/payload' do
   <% @hook_params.sort.map do |k,v| -%>
     <%=  k %> = <%=  v %>
   <% end %>
-
+  customCmd(<% if @cmd_param %><%= @cmd_param %><% end %>)
 
 end
 
