@@ -11,7 +11,7 @@ source /etc/init.d/functions
 
 # Set some variables
 WEBHOOK_HOME=/var/www/<%= @name %>
-WEBHOOK_PORT=<%= @hook_port %>
+WEBHOOK_PORT=<%= @port %>
 WEBHOOK_LOG="/var/log/webhooks.log"
 WEBHOOK_PID="/var/run/webhook-<%= @name %>_thin.pid"
 INIT_PID="/var/run/webhook-<%= @name %>.pid"

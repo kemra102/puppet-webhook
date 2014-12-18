@@ -9,7 +9,7 @@
 ### END INIT INFO
 
 WEBHOOK_HOME=/var/www/<%= @name %>
-WEBHOOK_PORT=<%= @hook_port %>
+WEBHOOK_PORT=<%= @port %>
 WEBHOOK_LOG="/var/log/webhooks.log"
 WEBHOOK_PID="/var/run/webhook-<%= @name %>_thin.pid"
 RUBY_SMALL=$(facter rubyversion | cut -c1-3)

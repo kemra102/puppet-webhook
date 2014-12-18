@@ -1,7 +1,8 @@
 define webhook::hook (
-  $hook_port   = '80',
-  $hook_params = [],
-  $hook_cmd    = undef,
+  $port      = '80',
+  $params    = [],
+  $cmd       = undef,
+  $cmd_param = undef,
 ) {
 
   File {
