@@ -3,18 +3,17 @@
 ####Table of Contents
 
 1. [Description](#description)
-	1.[Github](#github.com)
-	2.[Gitlab](#gitlab)
+    * [Github](#github.com)
+    * [Gitlab](#gitlab)
 2. [How to use](#how-to-use)
 3. [OS Support](#support)
 4. [Todo](#todo)
 
 
 ##Description
+This module intends to give the ability to produce simple webhooks on your servers whether that's an r10k call or something else. THis module base was forged from acidprime/puppet-webhook and is currently in early development so lots of testing is still needed.
 
-This module will install an simple but basic sinatra webapp which we be executing r10k commands when something is posted to this site. When something is pushed to an git repository, you can configure it by executing so-called webhooks. 
-
-###Github.com
+###github.com
 When using github for example, within the settings of the repository there is an setting called "Webhooks & Services". Fill in the webadress in the "Payload url" and make sure that "application/json" (Which is default) is selected. Also select "Just the push event." and click on "Add webhook".
 
 Please be sure, that github.com needs to be able to access this webpage. So configure the firewall for your devices to make sure it is accessible from github.com
@@ -26,13 +25,11 @@ Please be sure, that gitlab.org needs to be able to access this webpage. So conf
 
 ##How to use
 
-Basic usage
+Basic usage:
 
-```ruby
-class { 'webhook': }
+```puppet
+
 ```
-
-This will install an basic webapp which will be running as user root on port 81. The sinatra app is only available when one "JSON" information is posted to "http://fqdn:81/payload". The port can be overriden using the "webhook_port" parameter.
 
 You can override this module with the following parameters:
 

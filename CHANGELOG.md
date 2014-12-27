@@ -1,8 +1,12 @@
-#wdijkerman-webhook release
+#kemra102-webhook release
 
 Below an overview of all changes in the releases.
 
 Version (Release date)
+
+0.1.0   (2014-12-27)
+
+  * Changed from specific r1k webhook module to generic webhook module.
 
 0.0.3   (2014-08-28)
 
